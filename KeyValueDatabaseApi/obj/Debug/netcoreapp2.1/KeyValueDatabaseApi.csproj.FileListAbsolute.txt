@@ -1,0 +1,14 @@
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.csprojAssemblyReference.cache
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.csproj.CoreCompileInputs.cache
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.RazorAssemblyInfo.cache
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.RazorAssemblyInfo.cs
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.AssemblyInfoInputs.cache
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.AssemblyInfo.cs
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\bin\Debug\netcoreapp2.1\KeyValueDatabaseApi.deps.json
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\bin\Debug\netcoreapp2.1\KeyValueDatabaseApi.runtimeconfig.json
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\bin\Debug\netcoreapp2.1\KeyValueDatabaseApi.runtimeconfig.dev.json
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\bin\Debug\netcoreapp2.1\KeyValueDatabaseApi.dll
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\bin\Debug\netcoreapp2.1\KeyValueDatabaseApi.pdb
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.RazorTargetAssemblyInfo.cache
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.dll
+C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\obj\Debug\netcoreapp2.1\KeyValueDatabaseApi.pdb
