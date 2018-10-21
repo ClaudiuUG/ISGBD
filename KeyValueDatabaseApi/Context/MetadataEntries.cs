@@ -52,10 +52,10 @@ namespace KeyValueDatabaseApi.Context
     {
         public TableMetadataEntry(
             string tableName,
-            IEnumerable<AttributeEntry> structure,
+            List<AttributeEntry> structure,
             PrimaryKeyEntry primaryKey,
-            IEnumerable<UniqueKeyEntry> uniqueKeys,
-            IEnumerable<IndexFileEntry> indexFiles)
+            List<UniqueKeyEntry> uniqueKeys,
+            List<IndexFileEntry> indexFiles)
         {
             TableName = tableName;
             Structure = structure;
@@ -65,13 +65,13 @@ namespace KeyValueDatabaseApi.Context
 
         public string TableName { get; set; }
 
-        public IEnumerable<AttributeEntry> Structure { get; set; }
+        public List<AttributeEntry> Structure { get; set; }
 
         public PrimaryKeyEntry PrimaryKey { get; set; }
 
-        public IEnumerable<UniqueKeyEntry> UniqueKeyEntry { get; set; }
+        public List<UniqueKeyEntry> UniqueKeyEntry { get; set; }
 
-        public IEnumerable<IndexFileEntry> IndexFiles { get; set; }
+        public List<IndexFileEntry> IndexFiles { get; set; }
 
         [OnDeserialized]
         public void OnDeserialized(StreamingContext context)
@@ -136,31 +136,23 @@ namespace KeyValueDatabaseApi.Context
     [Serializable]
     public class IndexFileEntry
     {
-        public IndexFileEntry(IEnumerable<IndexAttributeEntry> indexAttributes)
+        public IndexFileEntry(string indexName, List<string> indexAttributes)
         {
+            IndexName = indexName;
             IndexAttributes = indexAttributes;
         }
 
-        public IEnumerable<IndexAttributeEntry> IndexAttributes { get; set; }
+        public string IndexName { get; set; }
+
+        public List<string> IndexAttributes { get; set; }
 
         [OnDeserialized]
         public void OnDeserialized(StreamingContext context)
         {
             if (IndexAttributes == null)
             {
-                IndexAttributes = new List<IndexAttributeEntry>();
+                IndexAttributes = new List<string>();
             }
         }
-    }
-
-    [Serializable]
-    public class IndexAttributeEntry
-    {
-        public IndexAttributeEntry(string attributeName)
-        {
-            AttributeName = attributeName;
-        }
-
-        public string AttributeName { get; set; }
     }
 }

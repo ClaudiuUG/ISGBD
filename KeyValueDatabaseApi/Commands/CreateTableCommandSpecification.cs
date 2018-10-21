@@ -9,26 +9,25 @@ namespace KeyValueDatabaseApi.Commands
     {
         private const int TableNamePosition = 2;
 
-        private string _insertTableRegex = "^" + RegexStrings.CreateCommandRegex + RegexStrings.TableReservedWordRegex + RegexStrings.IdentifierRegex + RegexStrings.TableColumnsRegex + "$";
+        private string _createTableRegex = "^" + RegexStrings.CreateCommandRegex + RegexStrings.TableReservedWordRegex + RegexStrings.IdentifierRegex + RegexStrings.TableColumnsRegex + "$";
 
         public bool TryParse(string command, out ICommand parsedCommand)
         {
-            var match = Regex.Match(command, _insertTableRegex);
+            var match = Regex.Match(command, _createTableRegex);
             if (!match.Success)
             {
                 parsedCommand = null;
                 return false;
             }
 
-            var commandRegex = new Regex(RegexStrings.IdentifierRegex);
-            var componentMatch = commandRegex.Matches(command);
+            var wordFindingRegex = new Regex(RegexStrings.IdentifierRegex);
+            var componentMatch = wordFindingRegex.Matches(command);
             var tableName = componentMatch[TableNamePosition].Value;
 
             var tableColumnsMatch = Regex.Match(command, RegexStrings.TableColumnsWithoutParanthesisRegex);
-            var tableColumnsAndNamesStringed = tableColumnsMatch.Value;
-            // tableColumnsAndNamesStringed = tableColumnsAndNamesStringed.Replace("(", "").Replace(")", "").Replace(" ", string.Empty);
+            var tableColumnsNameAndType = tableColumnsMatch.Value;
             var identifierRegex = RegexStrings.IdentifierRegex + "|" + RegexStrings.ColumnTypeRegex;
-            var tableColumnTypesAndNames = Regex.Match(tableColumnsAndNamesStringed, identifierRegex);
+            var tableColumnTypesAndNames = Regex.Match(tableColumnsNameAndType, identifierRegex);
             
             var attributes = new List<AttributeModel>();
             while (tableColumnTypesAndNames.Success)

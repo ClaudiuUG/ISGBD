@@ -54,16 +54,13 @@ namespace KeyValueDatabaseApi.Context
         public DatabaseMetadataEntry GetDatabase(string databaseName)
         {
             var matchedDatabase = DatabaseMetadata.Databases.SingleOrDefault(database => database.DatabaseName.Equals(databaseName));
-            if (matchedDatabase == null)
-            {
-                throw new DataBaseDoesNotExistException();
-            }
-            return matchedDatabase;
+            return matchedDatabase ?? throw new DataBaseDoesNotExistException();
         }
 
         public TableMetadataEntry GetTableFromCurrentDatabase(string tableName)
         {
-            return CurrentDatabase.Tables.SingleOrDefault(table => table.TableName.Equals(tableName));
+            var foundTable = CurrentDatabase.Tables.SingleOrDefault(table => table.TableName.Equals(tableName));
+            return foundTable ?? throw new TableDoesNotExistException(CurrentDatabase.DatabaseName, tableName);
         }
     }
 }

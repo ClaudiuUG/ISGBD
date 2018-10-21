@@ -32,7 +32,6 @@ namespace KeyValueDatabaseApi.Commands
                 attributeEntries.Add(mapper.MapToEntry(attribute));
             }
 
-            // TODO: update when key and index support is added
             dbContext.CurrentDatabase.Tables.Add(new TableMetadataEntry(TableName, attributeEntries, null, null, null));
             dbContext.SaveMetadataToFile();
         }
