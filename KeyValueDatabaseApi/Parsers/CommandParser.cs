@@ -14,7 +14,8 @@ namespace KeyValueDatabaseApi.Parsers
             new UseDatabaseCommandSpecification(),
             new CreateTableCommandSpecification(),
             new DropTableCommandSpecification(),
-            new CreateIndexCommandSpecification()
+            new CreateIndexCommandSpecification(),
+            new InsertIntoCommandSpecification()
         };
 
         public bool TryParse(string command, out ICommand parsedCommand) 

@@ -11,7 +11,9 @@ namespace KeyValueDatabaseApi.Context
 {
     public class DbContext
     {
-        private const string MetadataFilePath = @"C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\DatabaseStorage\Metadata.json";
+        private const string DatabasesPath = @"C:\Projects\KeyValueDatabase\KeyValueDatabaseApi\DatabaseStorage";
+
+        private string MetadataFilePath = $@"{DatabasesPath}\Metadata.json";
 
         public Metadata DatabaseMetadata { get; set; }
 
@@ -61,6 +63,31 @@ namespace KeyValueDatabaseApi.Context
         {
             var foundTable = CurrentDatabase.Tables.SingleOrDefault(table => table.TableName.Equals(tableName));
             return foundTable ?? throw new TableDoesNotExistException(CurrentDatabase.DatabaseName, tableName);
+        }
+
+        public void InsertRowIntoTable(string tableName, List<string> columnNames, List<string> values)
+        {
+            // check that the table has the specified columns - putem sa sarim peste asta momentan
+            // get the type of the columns and check that the given value is of that type - putem sa sarim peste asta
+            // create the object row (dynamic object)
+            // cum nu abvem clase pentru fiecare row, pentru ca o tabela poate sa arate cu vrea userul
+            // trebuie sa putem sa facem obiecte dimanice dupa forma tabelului pentru a le seriaza si stoca
+
+            // Am avut probleme cu path-ul relativ, asa ca am folosit absolut, modifica DatabsePath sa functioneze si la tine
+            var databaseDirectory = DatabasesPath + @"\" + CurrentDatabase.DatabaseName;
+            if (!Directory.Exists(databaseDirectory))
+            {
+                // se face un director cu numele bazei de date - in director o sa avem un fisier pentru fiecare tabel
+                Directory.CreateDirectory(databaseDirectory);
+            }
+            var tableFile = databaseDirectory + @"\" + tableName;
+            if (!File.Exists(tableFile)) // might not need this if File.WriteAllText creates the file when one is not already created
+            {
+                File.Create(tableFile);
+            }
+            
+            // if there is a file with the tableName, read it and append the new entry
+            // if there is no file with the tableName, create it and add the new entry
         }
     }
 }

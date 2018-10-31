@@ -31,6 +31,7 @@ namespace KeyValueDatabaseApi.Commands
 
             // TODO: validate that the index name is unique - maybe this should be done by the DbContext
             // TODO: Validate that the column exist in the table - maybe this should be done by the DbContext
+            // TODO: move all this logic into the dbContext
             table.IndexFiles.Add(new IndexFileEntry(IndexName, ColumnNames));
             dbContext.SaveMetadataToFile();
         }
