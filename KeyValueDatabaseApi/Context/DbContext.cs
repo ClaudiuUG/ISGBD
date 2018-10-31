@@ -88,6 +88,38 @@ namespace KeyValueDatabaseApi.Context
             
             // if there is a file with the tableName, read it and append the new entry
             // if there is no file with the tableName, create it and add the new entry
+
+            var table = GetTableFromCurrentDatabase(tableName);
+
+            if(table == null) 
+            {
+                throw new TableDoesNotExistException(CurrentDatabase.DatabaseName, table.TableName);
+            }
+            
+            string primaryKey = table.PrimaryKey.PrimaryKeyAttribute;
+            if(primaryKey == null) 
+            {
+                throw new InsertIntoCommandColumnCountDoesNotMatchValueCount();
+            }
+
+            var key = string.Empty;
+            var valuesString = string.Empty;
+            for(var i = 0; i < values.Count; i++){
+                if(string.Equals(columnNames[i], primaryKey))
+                {
+                    key = values[i];
+                }
+                else
+                {
+                    valuesString += "#" + values[i];
+                }
+            }
+
+            var row = (key + " " + valuesString);
+            var rows = new string[] {row};
+            var fileContent = File.ReadAllLines(tableFile);
+
+            File.AppendAllLines(tableFile, rows);
         }
     }
 }
